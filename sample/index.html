@@ -7,11 +7,13 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/">Home</a></li>
+            <li><a href="">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#posts">posts</a></li>
         </ul>
     </nav>
+    
+    <div id="app"></div>
 
     <script src="../dist/v-router.js"></script>
     <script>
@@ -31,7 +33,8 @@
         }];
 
         var options = {
-            mode: 'hash'
+            mode: 'hash',
+            el: '#app'
         };
         var router = new VRouter(routes, options);
     </script>
