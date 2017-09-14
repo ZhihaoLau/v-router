@@ -1,8 +1,12 @@
 {
   "name": "v-router",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/v-router.js",
+  "module": "dist/v-router.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "rollup -c -w"
+  },
   "dependencies": {
     "lodash": "^4.17.4"
   }

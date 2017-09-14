@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VRouter Sample</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#posts">posts</a></li>
+        </ul>
+    </nav>
+
+    <script src="../dist/v-router.js"></script>
+    <script>
+        var HomeComponent = function () {},
+            AboutComponent = function () {}, 
+            PostsComponent = function () {};
+
+        var routes = [{
+            path: '/',
+            component: HomeComponent
+        }, {
+            path: '/about',
+            component: AboutComponent
+        }, {
+            path: '/posts',
+            component: PostsComponent 
+        }];
+
+        var options = {
+            mode: 'hash'
+        };
+        var router = new VRouter(routes, options);
+    </script>
+</body>
+</html>
