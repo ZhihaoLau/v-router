@@ -1,26 +1,41 @@
 import Route from './route'
+import { version } from '../package.json'
+import _ from 'lodash'
+import $ from 'jquery'
+import { getUrlParams } from './util'
 
 class Router {
-    constructor (routes, options) {
-        this.routes = routes;
-        this.options = options;
+    constructor (bluePrints, options) {
+        this.bluePrints = bluePrints
+        this.options = options
 
-        this.instances = this.routes.map(this.instantiation);
+        this.beforeFun = null
+        this.afterFun = null 
 
-        this.listen();
+        this.routes = this.bluePrints.map(this.instantiation)
+
+        window.addEventListener('load', this.handleRouteChange)
+        window.addEventListener('hashchange', this.handleRouteChange)
+
+        this.SPA_RESOLVE_INIT = null
     }
 
-    listen () {
-        window.addEventListener('hashchange', this.handleRouteChange, false);
+    instantiation (bluePrint) {
+        return new Route(bluePrint)
     }
 
-    handleRouteChange () {
-        console.log('# changed');
-    }
+    handleRouteChange = () => {
+        return () => {
+            let currentHash = util.getParamsUrl()
+            if (!this.routes[currentHash.path]) return   
 
+            this.goTo(currentHash)
+        }
+    }
+    
     instantiation (config) {
         return new Route(config.path, config.component)
     }
 }
 
-export default Router;
+export default Router
